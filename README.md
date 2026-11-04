@@ -92,6 +92,21 @@ python3 install.py
 ./install.sh --project /path/to/my-project --agents claude,antigravity
 ```
 
+### Uninstalling (Global Removal)
+
+To remove all global `/vibe-*` commands, workflows, and skills across all agents:
+
+```bash
+# macOS / Linux / Git Bash
+./uninstall.sh
+
+# Windows (PowerShell)
+.\uninstall.ps1
+
+# Universal Python
+python3 uninstall.py
+```
+
 ---
 
 ## 🛠️ Complete Usage Guide (3 Real-World Scenarios)
@@ -211,9 +226,9 @@ If your `prd.md` is already super detailed and you want to jump straight to UI/U
 | AI Coding Agent | Global Slash Commands / Workflows | Global Agent Skills (`SKILL.md`) | Global Rules / Memory | Project-Level Paths |
 | :--- | :--- | :--- | :--- | :--- |
 | **Claude Code** | `~/.claude/commands/` | `~/.claude/skills/vibe-*/SKILL.md` | `~/.claude/CLAUDE.md` | `.claude/{commands,skills}/` + `CLAUDE.md` |
-| **Antigravity (White Icon IDE)** | `~/.gemini/antigravity/global_workflows/` | `~/.gemini/antigravity/skills/vibe-*/SKILL.md` | `~/.gemini/GEMINI.md` | `.agent/{workflows,skills,rules}/` |
+| **Antigravity (White Icon IDE)** | `~/.gemini/config/global_workflows/` | `~/.gemini/config/skills/vibe-*/SKILL.md` | `~/.gemini/GEMINI.md` | `.agents/{workflows,skills,rules}/` |
 | **OpenCode** | `~/.config/opencode/command/` & `commands/` | `~/.config/opencode/skills/vibe-*/SKILL.md` | `~/.config/opencode/AGENTS.md` | `.opencode/{command,skills}/` + `AGENTS.md` |
-| **Codex CLI + ChatGPT App** | `~/.codex/prompts/` | `~/.codex/skills/vibe-*/SKILL.md` & `~/.agents/skills/` | `~/.codex/AGENTS.md` | `.codex/skills/`, `.agents/skills/` + `AGENTS.md` |
+| **Codex CLI + ChatGPT App** | `~/.codex/prompts/` | `~/.codex/skills/vibe-*/SKILL.md` | `~/.codex/AGENTS.md` | `.codex/{skills,prompts}/` + `AGENTS.md` |
 | **Cursor** | `~/.cursor/commands/` | `~/.cursor/skills/vibe-*/SKILL.md` | `~/.cursor/rules/*.mdc` | `.cursor/{commands,skills,rules}/` |
 | **Windsurf** | `~/.codeium/windsurf/global_workflows/` | — | `~/.codeium/windsurf/memories/global_rules.md` | `.windsurf/{workflows,rules}/` |
 | **Roo Code / Cline** | `~/.roo/commands/` | — | `~/.roo/rules/vibe-pipeline.md` | `.roo/{commands,rules}/` & `.clinerules/workflows/` |

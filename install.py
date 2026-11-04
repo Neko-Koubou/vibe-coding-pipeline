@@ -76,18 +76,26 @@ def get_agent_specs(env, target_dir: Path):
             "key": "antigravity",
             "name": "Antigravity (White Icon IDE)",
             "global_cmd": [
-                h / ".gemini" / "antigravity" / "global_workflows",
-                h / ".agent" / "workflows",
+                h / ".gemini" / "config" / "global_workflows",
+                h / ".gemini" / "config" / "workflows",
             ],
-            "global_skills": [h / ".gemini" / "antigravity" / "skills"],
+            "global_skills": [h / ".gemini" / "config" / "skills"],
             "global_rules": [
-                (RULES_DIR / "AGENTS.md", h / ".agent" / "rules" / "vibe-pipeline.md"),
                 (RULES_DIR / "AGENTS.md", h / ".gemini" / "GEMINI.md"),
+                (RULES_DIR / "AGENTS.md", h / ".gemini" / "config" / "GEMINI.md"),
             ],
-            "project_cmd": [target_dir / ".agent" / "workflows"],
-            "project_skills": [target_dir / ".agent" / "skills"],
+            "project_cmd": [
+                target_dir / ".agents" / "workflows",
+                target_dir / ".agent" / "workflows",
+            ],
+            "project_skills": [
+                target_dir / ".agents" / "skills",
+                target_dir / ".agent" / "skills",
+            ],
             "project_rules": [
-                (RULES_DIR / "AGENTS.md", target_dir / ".agent" / "rules" / "vibe-pipeline.md")
+                (RULES_DIR / "AGENTS.md", target_dir / ".agents" / "rules" / "vibe-pipeline.md"),
+                (RULES_DIR / "AGENTS.md", target_dir / ".agent" / "rules" / "vibe-pipeline.md"),
+                (RULES_DIR / "AGENTS.md", target_dir / "AGENTS.md"),
             ],
         },
         {
@@ -116,10 +124,10 @@ def get_agent_specs(env, target_dir: Path):
             "key": "codex",
             "name": "Codex CLI + ChatGPT App",
             "global_cmd": [h / ".codex" / "prompts"],
-            "global_skills": [h / ".codex" / "skills", h / ".agents" / "skills"],
+            "global_skills": [h / ".codex" / "skills"],
             "global_rules": [(RULES_DIR / "AGENTS.md", h / ".codex" / "AGENTS.md")],
             "project_cmd": [target_dir / ".codex" / "prompts"],
-            "project_skills": [target_dir / ".codex" / "skills", target_dir / ".agents" / "skills"],
+            "project_skills": [target_dir / ".codex" / "skills"],
             "project_rules": [(RULES_DIR / "AGENTS.md", target_dir / "AGENTS.md")],
         },
         {

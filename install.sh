@@ -64,8 +64,9 @@ GLOBAL_CLAUDE_CMD="$USER_HOME/.claude/commands"
 GLOBAL_CLAUDE_SKILLS="$USER_HOME/.claude/skills"
 GLOBAL_CLAUDE_RULE="$USER_HOME/.claude/CLAUDE.md"
 
-GLOBAL_ANTIGRAVITY_CMD="$USER_HOME/.gemini/antigravity/global_workflows"
-GLOBAL_ANTIGRAVITY_SKILLS="$USER_HOME/.gemini/antigravity/skills"
+GLOBAL_ANTIGRAVITY_CMD="$USER_HOME/.gemini/config/global_workflows"
+GLOBAL_ANTIGRAVITY_WF="$USER_HOME/.gemini/config/workflows"
+GLOBAL_ANTIGRAVITY_SKILLS="$USER_HOME/.gemini/config/skills"
 GLOBAL_ANTIGRAVITY_RULE="$USER_HOME/.gemini/GEMINI.md"
 
 GLOBAL_OPENCODE_CMD_SINGULAR="$XDG_CFG/opencode/command"
@@ -75,7 +76,6 @@ GLOBAL_OPENCODE_RULE="$XDG_CFG/opencode/AGENTS.md"
 
 GLOBAL_CODEX_PROMPTS="$USER_HOME/.codex/prompts"
 GLOBAL_CODEX_SKILLS="$USER_HOME/.codex/skills"
-GLOBAL_AGENTS_SKILLS="$USER_HOME/.agents/skills"
 GLOBAL_CODEX_RULE="$USER_HOME/.codex/AGENTS.md"
 
 GLOBAL_CURSOR_CMD="$USER_HOME/.cursor/commands"
@@ -168,9 +168,9 @@ get_agent_path_preview() {
   if [[ "$SCOPE" == "global" ]]; then
     case "$idx" in
       0) echo "~/.claude/{commands,skills}" ;;
-      1) echo "~/.gemini/antigravity/{global_workflows,skills}" ;;
+      1) echo "~/.gemini/config/{skills,global_workflows}" ;;
       2) echo "~/.config/opencode/{command,skills}" ;;
-      3) echo "~/.codex/{skills,prompts} + ~/.agents/skills" ;;
+      3) echo "~/.codex/{skills,prompts}" ;;
       4) echo "~/.cursor/{commands,skills,rules}" ;;
       5) echo "~/.codeium/windsurf/global_workflows" ;;
       6) echo "~/.roo/{commands,rules}" ;;
@@ -178,9 +178,9 @@ get_agent_path_preview() {
   else
     case "$idx" in
       0) echo ".claude/{commands,skills}" ;;
-      1) echo ".agent/{workflows,skills,rules}" ;;
+      1) echo ".agents/{skills,workflows,rules}" ;;
       2) echo ".opencode/{command,skills}" ;;
-      3) echo ".codex/{skills,prompts} + .agents/skills" ;;
+      3) echo ".codex/{skills,prompts}" ;;
       4) echo ".cursor/{commands,skills,rules}" ;;
       5) echo ".windsurf/{workflows,rules}" ;;
       6) echo ".roo/{commands,rules}" ;;
@@ -287,19 +287,23 @@ install_agent() {
 
     antigravity)
       if [[ "$SCOPE" == "global" ]]; then
-        mkdir -p "$GLOBAL_ANTIGRAVITY_CMD" "$USER_HOME/.agent/workflows" "$USER_HOME/.agent/rules"
+        mkdir -p "$GLOBAL_ANTIGRAVITY_CMD" "$GLOBAL_ANTIGRAVITY_WF" "$GLOBAL_ANTIGRAVITY_SKILLS"
         cp "$SCRIPT_DIR/prompts/"*.md "$GLOBAL_ANTIGRAVITY_CMD/"
-        cp "$SCRIPT_DIR/prompts/"*.md "$USER_HOME/.agent/workflows/"
+        cp "$SCRIPT_DIR/prompts/"*.md "$GLOBAL_ANTIGRAVITY_WF/"
         copy_skills_tree "$GLOBAL_ANTIGRAVITY_SKILLS"
-        cp "$SCRIPT_DIR/rules/AGENTS.md" "$USER_HOME/.agent/rules/vibe-pipeline.md"
         append_or_copy_rule "$SCRIPT_DIR/rules/AGENTS.md" "$GLOBAL_ANTIGRAVITY_RULE"
-        echo -e "✅ ${GREEN}Antigravity White-Icon IDE (Global)${RESET} -> $GLOBAL_ANTIGRAVITY_CMD & $GLOBAL_ANTIGRAVITY_SKILLS"
+        append_or_copy_rule "$SCRIPT_DIR/rules/AGENTS.md" "$USER_HOME/.gemini/config/GEMINI.md"
+        echo -e "✅ ${GREEN}Antigravity White-Icon IDE (Global)${RESET} -> $GLOBAL_ANTIGRAVITY_SKILLS & $GLOBAL_ANTIGRAVITY_CMD"
       else
-        mkdir -p "$TARGET_DIR/.agent/workflows" "$TARGET_DIR/.agent/rules"
+        mkdir -p "$TARGET_DIR/.agents/workflows" "$TARGET_DIR/.agents/rules" "$TARGET_DIR/.agent/workflows" "$TARGET_DIR/.agent/rules"
+        cp "$SCRIPT_DIR/prompts/"*.md "$TARGET_DIR/.agents/workflows/"
         cp "$SCRIPT_DIR/prompts/"*.md "$TARGET_DIR/.agent/workflows/"
+        copy_skills_tree "$TARGET_DIR/.agents/skills"
         copy_skills_tree "$TARGET_DIR/.agent/skills"
+        cp "$SCRIPT_DIR/rules/AGENTS.md" "$TARGET_DIR/.agents/rules/vibe-pipeline.md"
         cp "$SCRIPT_DIR/rules/AGENTS.md" "$TARGET_DIR/.agent/rules/vibe-pipeline.md"
-        echo -e "✅ ${GREEN}Antigravity White-Icon IDE (Project)${RESET} -> $TARGET_DIR/.agent/{workflows,skills,rules}"
+        append_or_copy_rule "$SCRIPT_DIR/rules/AGENTS.md" "$TARGET_DIR/AGENTS.md"
+        echo -e "✅ ${GREEN}Antigravity White-Icon IDE (Project)${RESET} -> $TARGET_DIR/.agents/{workflows,skills,rules}"
       fi
       ;;
 
@@ -331,16 +335,14 @@ install_agent() {
         mkdir -p "$GLOBAL_CODEX_PROMPTS"
         cp "$SCRIPT_DIR/prompts/"*.md "$GLOBAL_CODEX_PROMPTS/"
         copy_skills_tree "$GLOBAL_CODEX_SKILLS"
-        copy_skills_tree "$GLOBAL_AGENTS_SKILLS"
         append_or_copy_rule "$SCRIPT_DIR/rules/AGENTS.md" "$GLOBAL_CODEX_RULE"
-        echo -e "✅ ${GREEN}Codex CLI + ChatGPT App (Global)${RESET} -> $GLOBAL_CODEX_SKILLS, $GLOBAL_AGENTS_SKILLS & $GLOBAL_CODEX_PROMPTS"
+        echo -e "✅ ${GREEN}Codex CLI + ChatGPT App (Global)${RESET} -> $GLOBAL_CODEX_SKILLS & $GLOBAL_CODEX_PROMPTS"
       else
         mkdir -p "$TARGET_DIR/.codex/prompts"
         cp "$SCRIPT_DIR/prompts/"*.md "$TARGET_DIR/.codex/prompts/"
         copy_skills_tree "$TARGET_DIR/.codex/skills"
-        copy_skills_tree "$TARGET_DIR/.agents/skills"
         append_or_copy_rule "$SCRIPT_DIR/rules/AGENTS.md" "$TARGET_DIR/AGENTS.md"
-        echo -e "✅ ${GREEN}Codex CLI + ChatGPT App (Project)${RESET} -> $TARGET_DIR/{.codex,.agents}/skills & AGENTS.md"
+        echo -e "✅ ${GREEN}Codex CLI + ChatGPT App (Project)${RESET} -> $TARGET_DIR/.codex/{skills,prompts} & AGENTS.md"
       fi
       ;;
 
