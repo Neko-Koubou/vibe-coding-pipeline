@@ -68,7 +68,7 @@ flowchart LR
 
 ### Interactive Installer (macOS / Linux / WSL / Windows Git Bash)
 ```bash
-git clone https://github.com/<your-username>/vibe-coding-pipeline.git
+git clone https://github.com/Neko-Koubou/vibe-coding-pipeline.git
 cd vibe-coding-pipeline
 ./install.sh
 ```

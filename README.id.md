@@ -20,6 +20,8 @@ Jalankan installer interaktif sesuai OS yang kamu gunakan:
 
 ### macOS / Linux / WSL / Git Bash
 ```bash
+git clone https://github.com/Neko-Koubou/vibe-coding-pipeline.git
+cd vibe-coding-pipeline
 chmod +x install.sh
 ./install.sh
 ```
