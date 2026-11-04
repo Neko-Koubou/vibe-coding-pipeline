@@ -74,7 +74,7 @@ def get_agent_specs(env, target_dir: Path):
         },
         {
             "key": "antigravity",
-            "name": "Antigravity (White Icon IDE)",
+            "name": "Google Antigravity (IDE & CLI)",
             "global_cmd": [
                 h / ".gemini" / "config" / "global_workflows",
                 h / ".gemini" / "config" / "workflows",

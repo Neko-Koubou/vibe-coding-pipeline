@@ -155,7 +155,7 @@ fi
 AGENT_KEYS=("claude" "antigravity" "opencode" "codex" "cursor" "windsurf" "roocode")
 AGENT_NAMES=(
   "Claude Code (CLI & IDE)         "
-  "Antigravity (White Icon IDE/CLI)"
+  "Google Antigravity (IDE & CLI)   "
   "OpenCode (CLI / Desktop)        "
   "Codex CLI + ChatGPT App         "
   "Cursor (AI IDE)                 "
@@ -293,7 +293,7 @@ install_agent() {
         copy_skills_tree "$GLOBAL_ANTIGRAVITY_SKILLS"
         append_or_copy_rule "$SCRIPT_DIR/rules/AGENTS.md" "$GLOBAL_ANTIGRAVITY_RULE"
         append_or_copy_rule "$SCRIPT_DIR/rules/AGENTS.md" "$USER_HOME/.gemini/config/GEMINI.md"
-        echo -e "✅ ${GREEN}Antigravity White-Icon IDE (Global)${RESET} -> $GLOBAL_ANTIGRAVITY_SKILLS & $GLOBAL_ANTIGRAVITY_CMD"
+        echo -e "✅ ${GREEN}Google Antigravity (Global)${RESET} -> $GLOBAL_ANTIGRAVITY_SKILLS & $GLOBAL_ANTIGRAVITY_CMD"
       else
         mkdir -p "$TARGET_DIR/.agents/workflows" "$TARGET_DIR/.agents/rules" "$TARGET_DIR/.agent/workflows" "$TARGET_DIR/.agent/rules"
         cp "$SCRIPT_DIR/prompts/"*.md "$TARGET_DIR/.agents/workflows/"
@@ -303,7 +303,7 @@ install_agent() {
         cp "$SCRIPT_DIR/rules/AGENTS.md" "$TARGET_DIR/.agents/rules/vibe-pipeline.md"
         cp "$SCRIPT_DIR/rules/AGENTS.md" "$TARGET_DIR/.agent/rules/vibe-pipeline.md"
         append_or_copy_rule "$SCRIPT_DIR/rules/AGENTS.md" "$TARGET_DIR/AGENTS.md"
-        echo -e "✅ ${GREEN}Antigravity White-Icon IDE (Project)${RESET} -> $TARGET_DIR/.agents/{workflows,skills,rules}"
+        echo -e "✅ ${GREEN}Google Antigravity (Project)${RESET} -> $TARGET_DIR/.agents/{workflows,skills,rules}"
       fi
       ;;
 

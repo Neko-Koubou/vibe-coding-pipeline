@@ -184,7 +184,7 @@ Jika kamu ingin menambahkan fitur baru pada project yang sudah ada:
 | AI Coding Agent | Global Slash Command / Workflow | Global Agent Skills (`SKILL.md`) | Global Rules / Memory | Project-Level Path |
 | :--- | :--- | :--- | :--- | :--- |
 | **Claude Code** | `~/.claude/commands/` | `~/.claude/skills/vibe-*/SKILL.md` | `~/.claude/CLAUDE.md` | `.claude/{commands,skills}/` + `CLAUDE.md` |
-| **Antigravity (IDE Ikon Putih)** | `~/.gemini/config/global_workflows/` | `~/.gemini/config/skills/vibe-*/SKILL.md` | `~/.gemini/GEMINI.md` | `.agents/{workflows,skills,rules}/` |
+| **Google Antigravity (IDE & CLI)** | `~/.gemini/config/global_workflows/` | `~/.gemini/config/skills/vibe-*/SKILL.md` | `~/.gemini/GEMINI.md` | `.agents/{workflows,skills,rules}/` |
 | **OpenCode** | `~/.config/opencode/command/` & `commands/` | `~/.config/opencode/skills/vibe-*/SKILL.md` | `~/.config/opencode/AGENTS.md` | `.opencode/{command,skills}/` + `AGENTS.md` |
 | **Codex + ChatGPT App** | `~/.codex/prompts/` | `~/.codex/skills/vibe-*/SKILL.md` | `~/.codex/AGENTS.md` | `.codex/{skills,prompts}/` + `AGENTS.md` |
 | **Cursor** | `~/.cursor/commands/` | `~/.cursor/skills/vibe-*/SKILL.md` | `~/.cursor/rules/*.mdc` | `.cursor/{commands,skills,rules}/` |

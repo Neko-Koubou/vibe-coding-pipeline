@@ -6,7 +6,7 @@
 
 > **Install once globally. Orchestrate a complete AI Engineering Team across every project on Windows, macOS, and Linux.**
 >
-> Supports both **Slash Commands (`/vibe-*`)** and the **2026 Agent Skills Standard (`SKILL.md` / `$vibe-*`)** across **Claude Code, Google Antigravity (White Icon IDE), OpenCode, OpenAI Codex + ChatGPT App, Cursor, Windsurf, and Roo Code / Cline**.
+> Supports both **Slash Commands (`/vibe-*`)** and the **2026 Agent Skills Standard (`SKILL.md` / `$vibe-*`)** across **Claude Code, Google Antigravity (IDE & CLI), OpenCode, OpenAI Codex + ChatGPT App, Cursor, Windsurf, and Roo Code / Cline**.
 
 🇮🇩 **[Baca Panduan Lengkap Bahasa Indonesia (README.id.md)](./README.id.md)**
 
@@ -226,7 +226,7 @@ If your `prd.md` is already super detailed and you want to jump straight to UI/U
 | AI Coding Agent | Global Slash Commands / Workflows | Global Agent Skills (`SKILL.md`) | Global Rules / Memory | Project-Level Paths |
 | :--- | :--- | :--- | :--- | :--- |
 | **Claude Code** | `~/.claude/commands/` | `~/.claude/skills/vibe-*/SKILL.md` | `~/.claude/CLAUDE.md` | `.claude/{commands,skills}/` + `CLAUDE.md` |
-| **Antigravity (White Icon IDE)** | `~/.gemini/config/global_workflows/` | `~/.gemini/config/skills/vibe-*/SKILL.md` | `~/.gemini/GEMINI.md` | `.agents/{workflows,skills,rules}/` |
+| **Google Antigravity (IDE & CLI)** | `~/.gemini/config/global_workflows/` | `~/.gemini/config/skills/vibe-*/SKILL.md` | `~/.gemini/GEMINI.md` | `.agents/{workflows,skills,rules}/` |
 | **OpenCode** | `~/.config/opencode/command/` & `commands/` | `~/.config/opencode/skills/vibe-*/SKILL.md` | `~/.config/opencode/AGENTS.md` | `.opencode/{command,skills}/` + `AGENTS.md` |
 | **Codex CLI + ChatGPT App** | `~/.codex/prompts/` | `~/.codex/skills/vibe-*/SKILL.md` | `~/.codex/AGENTS.md` | `.codex/{skills,prompts}/` + `AGENTS.md` |
 | **Cursor** | `~/.cursor/commands/` | `~/.cursor/skills/vibe-*/SKILL.md` | `~/.cursor/rules/*.mdc` | `.cursor/{commands,skills,rules}/` |
