@@ -1,3 +1,51 @@
+# Operating System Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Python Cache & Virtual Environments
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg-info/
+.pytest_cache/
+
+# Editors & IDEs
+.idea/
+*.swp
+*.swo
+*~
+.vscode/
+
+# Local Project Testing Artefacts (Root-level only, preserve templates in dist/)
+/docs/vibe/
+/.claude/
+/.agents/
+/.agent/
+/.codex/
+/.opencode/
+/.cursor/
+/.windsurf/
+/.roo/
+/.clinerules/
+/CLAUDE.md
+/AGENTS.md
+/prd.md
+/PRD.md
+
+# Logs & Temporary Files
+*.log
+tmp/
+.tmp/
