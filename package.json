@@ -1,6 +1,6 @@
 {
   "name": "vibe-coding-pipeline",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Artifact-driven multi-agent SDLC pipeline: /vibe-* slash commands & Agent Skills for Claude Code, Google Antigravity, OpenCode, Codex, Cursor, Windsurf and Roo Code",
   "license": "MIT",
   "repository": {
