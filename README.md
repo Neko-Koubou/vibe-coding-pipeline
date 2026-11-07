@@ -1,6 +1,6 @@
 # ⚡ Vibe Coding Pipeline — Multi-Agent SDLC Framework (2026 Edition)
 
-[![npm version](https://img.shields.io/npm/v/vibe-coding-pipeline?logo=npm&color=cb3837)](https://www.npmjs.com/package/vibe-coding-pipeline)
+[![npm version](https://img.shields.io/npm/v/@neko-koubou/vibe-coding-pipeline?logo=npm&color=cb3837)](https://www.npmjs.com/package/@neko-koubou/vibe-coding-pipeline)
 [![GitHub release](https://img.shields.io/github/v/release/Neko-Koubou/vibe-coding-pipeline?logo=github)](https://github.com/Neko-Koubou/vibe-coding-pipeline/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#-license)
 [![OS: Windows | macOS | Linux](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-success)](#-2026-agent-directory-matrix-global--project)
@@ -81,7 +81,7 @@ npx Neko-Koubou/vibe-coding-pipeline --project ./my-app --agents all
 npx Neko-Koubou/vibe-coding-pipeline --yes    # Global + Claude Code, Antigravity, Codex, no prompts
 ```
 
-This runs the installer straight from GitHub (needs `git` installed) and fetches the latest `main` every time. The same CLI is also published on npm: `npx vibe-coding-pipeline@latest` (no `git` needed).
+This runs the installer straight from GitHub (needs `git` installed) and fetches the latest `main` every time. The same CLI is also published on npm: `npx @neko-koubou/vibe-coding-pipeline@latest` (no `git` needed).
 
 Prefer a permanent command? `npm i -g Neko-Koubou/vibe-coding-pipeline`, then run `vibe-pipeline` with the same flags (`vibe-pipeline --help`).
 

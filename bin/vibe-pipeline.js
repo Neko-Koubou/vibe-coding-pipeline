@@ -49,7 +49,7 @@ Options:
   -h, --help                Show this help
 
 Without --global/--project or --agents, the installer asks interactively.
-Also published on npm: npx vibe-coding-pipeline@latest
+Also published on npm: npx @neko-koubou/vibe-coding-pipeline@latest
 After "npm i -g Neko-Koubou/vibe-coding-pipeline", the same CLI is available as "vibe-pipeline".`;
 
 class UsageError extends Error {}
