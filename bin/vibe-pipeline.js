@@ -5,9 +5,9 @@
  * Same behavior as install.py: Global vs Project scope, multi-select agents,
  * slash commands + Agent Skills (SKILL.md) + rules. No dependencies.
  *
- *   npx vibe-coding-pipeline                      interactive install
- *   npx vibe-coding-pipeline --global --agents all
- *   npx vibe-coding-pipeline uninstall
+ *   npx Neko-Koubou/vibe-coding-pipeline                      interactive install
+ *   npx Neko-Koubou/vibe-coding-pipeline --global --agents all
+ *   npx Neko-Koubou/vibe-coding-pipeline uninstall
  */
 
 const fs = require("fs");
@@ -36,8 +36,8 @@ const AGENT_ALIASES = { "claude-code": "claude", ag: "antigravity", chatgpt: "co
 const HELP = `Vibe Coding Pipeline installer v${VERSION}
 
 Usage:
-  npx vibe-coding-pipeline [install] [options]   Install /vibe-* commands, skills & rules
-  npx vibe-coding-pipeline uninstall             Remove the global /vibe-* commands & skills
+  npx Neko-Koubou/vibe-coding-pipeline [install] [options]   Install /vibe-* commands, skills & rules
+  npx Neko-Koubou/vibe-coding-pipeline uninstall             Remove the global /vibe-* commands & skills
 
 Options:
   -g, --global              Install for the current OS user (all projects)
@@ -49,7 +49,8 @@ Options:
   -h, --help                Show this help
 
 Without --global/--project or --agents, the installer asks interactively.
-After "npm install -g vibe-coding-pipeline", the same CLI is available as "vibe-pipeline".`;
+Also published on npm: npx vibe-coding-pipeline@latest
+After "npm i -g Neko-Koubou/vibe-coding-pipeline", the same CLI is available as "vibe-pipeline".`;
 
 class UsageError extends Error {}
 

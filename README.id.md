@@ -21,17 +21,19 @@ Framework **Artifact-Driven Vibe Coding** dengan *slash command* (`/vibe-*`) dan
 Tidak perlu clone repo:
 ```bash
 # Interaktif (pilih Global/Project dan agent)
-npx vibe-coding-pipeline@latest
+npx Neko-Koubou/vibe-coding-pipeline
 
 # Tanpa pertanyaan (non-interaktif)
-npx vibe-coding-pipeline@latest --global --agents claude,antigravity,codex
-npx vibe-coding-pipeline@latest --project ./my-app --agents all
-npx vibe-coding-pipeline@latest --yes    # Global + Claude Code, Antigravity, Codex
+npx Neko-Koubou/vibe-coding-pipeline --global --agents claude,antigravity,codex
+npx Neko-Koubou/vibe-coding-pipeline --project ./my-app --agents all
+npx Neko-Koubou/vibe-coding-pipeline --yes    # Global + Claude Code, Antigravity, Codex
 ```
 
-Mau jadi command permanen? Jalankan `npm install -g vibe-coding-pipeline`, lalu pakai `vibe-pipeline` dengan flag yang sama (`vibe-pipeline --help`).
+Perintah ini menjalankan installer langsung dari GitHub (butuh `git` terpasang) dan selalu mengambil versi terbaru dari `main`. CLI yang sama juga ada di npm: `npx vibe-coding-pipeline@latest` (tidak butuh `git`).
 
-> Belum ada di npm? `npx github:Neko-Koubou/vibe-coding-pipeline` menjalankan installer yang sama langsung dari GitHub.
+Mau jadi command permanen? Jalankan `npm i -g Neko-Koubou/vibe-coding-pipeline`, lalu pakai `vibe-pipeline` dengan flag yang sama (`vibe-pipeline --help`).
+
+> Jangan lupa `-g`: `npm i Neko-Koubou/vibe-coding-pipeline` tanpa `-g` di dalam project hanya menambahkannya ke `package.json` project itu, tidak meng-install command `/vibe-*` apa pun.
 
 Atau jalankan installer interaktif dari repo sesuai OS yang kamu gunakan:
 
@@ -58,7 +60,7 @@ Saat installer berjalan:
 Untuk menghapus seluruh command, workflow, dan skill global `/vibe-*` dari sistem:
 ```bash
 # Semua OS yang punya Node.js
-npx vibe-coding-pipeline@latest uninstall
+npx Neko-Koubou/vibe-coding-pipeline uninstall
 
 # macOS / Linux / Git Bash
 ./uninstall.sh
@@ -71,7 +73,7 @@ python3 uninstall.py
 ```
 
 ### Update ke Versi Terbaru
-Jalankan lagi `npx vibe-coding-pipeline@latest`, atau tarik versi terbaru repo ini lalu jalankan ulang installer dengan opsi yang sama. Command dan skill akan ditimpa, dan blok Vibe di dalam file rules bersama (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, ...) diganti di tempat; isi lain di file tersebut tetap aman.
+Jalankan lagi `npx Neko-Koubou/vibe-coding-pipeline` (selalu mengambil `main` terbaru), atau tarik versi terbaru repo ini lalu jalankan ulang installer dengan opsi yang sama. Command dan skill akan ditimpa, dan blok Vibe di dalam file rules bersama (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, ...) diganti di tempat; isi lain di file tersebut tetap aman.
 
 --- 
 
