@@ -49,3 +49,7 @@ ENV/
 *.log
 tmp/
 .tmp/
+
+# Node / npm packaging
+node_modules/
+*.tgz

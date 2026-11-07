@@ -21,7 +21,8 @@
    - [Scenario B: You Already Have an Existing `prd.md` File](#scenario-b-you-already-have-an-existing-prdmd-file)
    - [Scenario C: Adding a Feature to an Existing Codebase (Brownfield)](#scenario-c-adding-a-feature-to-an-existing-codebase-brownfield)
 5. [Command Reference & Cheat Sheet](#-command-reference--cheat-sheet)
-6. [2026 Agent Directory Matrix (Global & Project)](#-2026-agent-directory-matrix-global--project)
+6. [Context Compaction & Resume](#-context-compaction--resume)
+7. [2026 Agent Directory Matrix (Global & Project)](#-2026-agent-directory-matrix-global--project)
 
 ---
 
@@ -66,6 +67,22 @@ flowchart LR
 
 ## 🚀 Quick Installation (Global & Project)
 
+### Fastest: npx (Node.js 18+, Windows / macOS / Linux)
+No clone needed:
+```bash
+# Interactive (choose Global/Project and agents)
+npx vibe-coding-pipeline@latest
+
+# Non-interactive
+npx vibe-coding-pipeline@latest --global --agents claude,antigravity,codex
+npx vibe-coding-pipeline@latest --project ./my-app --agents all
+npx vibe-coding-pipeline@latest --yes    # Global + Claude Code, Antigravity, Codex, no prompts
+```
+
+Prefer a permanent command? `npm install -g vibe-coding-pipeline`, then run `vibe-pipeline` with the same flags (`vibe-pipeline --help`).
+
+> Not on npm yet? `npx github:Neko-Koubou/vibe-coding-pipeline` runs the same installer straight from GitHub.
+
 ### Interactive Installer (macOS / Linux / WSL / Windows Git Bash)
 ```bash
 git clone https://github.com/Neko-Koubou/vibe-coding-pipeline.git
@@ -97,6 +114,9 @@ python3 install.py
 To remove all global `/vibe-*` commands, workflows, and skills across all agents:
 
 ```bash
+# Any OS with Node.js
+npx vibe-coding-pipeline@latest uninstall
+
 # macOS / Linux / Git Bash
 ./uninstall.sh
 
@@ -106,6 +126,10 @@ To remove all global `/vibe-*` commands, workflows, and skills across all agents
 # Universal Python
 python3 uninstall.py
 ```
+
+### Upgrading
+
+Run `npx vibe-coding-pipeline@latest` again, or pull the latest version of this repo and re-run the installer with the same options. Commands and skills are overwritten, and the Vibe block inside shared rules files (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, ...) is replaced in place; the rest of those files is kept.
 
 ---
 
@@ -218,6 +242,23 @@ If your `prd.md` is already super detailed and you want to jump straight to UI/U
 
 > **Tip for OpenAI Codex & ChatGPT Desktop App Users**:
 > You can invoke any stage either as a skill (`$vibe-init`, `$vibe-prd prd.md`, `$vibe-sa`) or via slash command (`/vibe-prd`).
+
+---
+
+## 🧠 Context Compaction & Resume
+
+Agents automatically compact (summarize) long conversations. When that happens mid-stage, chat memory, and sometimes the `/vibe-*` instructions themselves, can be summarized away. Every stage therefore keeps its progress **on disk**:
+
+| Stage | On-disk checkpoint | After a compaction or interruption |
+| :--- | :--- | :--- |
+| `/vibe-code` | `[~]` marker in `04-tasks.md` + `IN PROGRESS` entry in `05-implementation-log.md` | Run `/vibe-code` again: it resumes the `[~]` task instead of skipping to the next one |
+| `/vibe-review --fix` | Each finding flips `[OPEN]` → `[RESOLVED]` in `06-code-review.md` | Re-run `/vibe-review --fix`: it continues with the remaining `[OPEN]` findings |
+| `/vibe-test` | RTM rows go `PENDING` → `PASS`/`FAIL` in `07-qa-report.md` | Re-run `/vibe-test`: it continues with the `PENDING` rows |
+| `/vibe-init` … `/vibe-tasks` | `> **Status**: DRAFT` until the artifact is `COMPLETE` | Re-run the stage: it finishes the missing sections |
+
+Task markers in `04-tasks.md`: `- [ ]` Pending · `- [~]` In Progress · `- [x]` Completed · `- [!]` Blocked (the reason is in `05-implementation-log.md`).
+
+The installed rules file (`CLAUDE.md` / `AGENTS.md` / `.mdc`) also tells the agent to re-read `docs/vibe/` after any compaction, and includes a **Compact Instructions** section that tells the summary what to keep.
 
 ---
 

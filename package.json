@@ -1,0 +1,42 @@
+{
+  "name": "vibe-coding-pipeline",
+  "version": "1.0.0",
+  "description": "Artifact-driven multi-agent SDLC pipeline: /vibe-* slash commands & Agent Skills for Claude Code, Google Antigravity, OpenCode, Codex, Cursor, Windsurf and Roo Code",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neko-Koubou/vibe-coding-pipeline.git"
+  },
+  "homepage": "https://github.com/Neko-Koubou/vibe-coding-pipeline#readme",
+  "bugs": {
+    "url": "https://github.com/Neko-Koubou/vibe-coding-pipeline/issues"
+  },
+  "bin": {
+    "vibe-coding-pipeline": "bin/vibe-pipeline.js",
+    "vibe-pipeline": "bin/vibe-pipeline.js"
+  },
+  "files": [
+    "bin/",
+    "prompts/",
+    "skills/",
+    "rules/",
+    "README.id.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "vibe-coding",
+    "ai-agents",
+    "claude-code",
+    "codex",
+    "cursor",
+    "antigravity",
+    "opencode",
+    "windsurf",
+    "agent-skills",
+    "slash-commands",
+    "prd",
+    "sdlc"
+  ]
+}

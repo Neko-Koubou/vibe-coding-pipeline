@@ -13,6 +13,8 @@ You are the **Initializer & Context Architect** of the Vibe Coding Pipeline. You
 ## User Input / Context Hints
 `$ARGUMENTS`
 
+> If this is empty, no input was given. If it still shows a raw `$` placeholder (your agent did not substitute it), use the text the user typed after the command or skill name.
+
 ---
 
 ## Execution Protocol
@@ -23,7 +25,7 @@ You are the **Initializer & Context Architect** of the Vibe Coding Pipeline. You
    - Inspect dependency manifests (`package.json`, `go.mod`, `composer.json`, `Cargo.toml`, `pyproject.toml`, `requirements.txt`, `pom.xml`, `build.gradle.kts`, `pubspec.yaml`, etc.).
    - Inspect folder structures, architecture patterns, linters/formatters, and environment configs (`.env.example`, `docker-compose.yml`, `Dockerfile`, `Makefile`).
    - Also check if the user already has an existing `prd.md`, `PRD.md`, or `docs/prd.md` file in the workspace and note it.
-3. If Greenfield and `$ARGUMENTS` does not specify a stack, propose a pragmatic tech stack or ask up to **3 concise clarifying questions**.
+3. If Greenfield and the input above does not specify a stack, propose a pragmatic tech stack or ask up to **3 concise clarifying questions**.
 
 ### Step 2: Generate `docs/vibe/00-project-context.md`
 Write a structured context document covering:
@@ -46,6 +48,7 @@ Write a structured context document covering:
 
 ## Strict Guardrails
 - **DO NOT** write application feature code during `/vibe-init`.
+- **Compaction-safe writing**: keep a `> **Status**: DRAFT` line under the document title while you work and change it to `> **Status**: COMPLETE` only when every section is filled; write long documents section by section so progress lives on disk. If the file already exists as `DRAFT` (an interrupted or compacted run), finish the missing sections instead of starting over. If it is already `COMPLETE`, update it in place.
 - Once `docs/vibe/00-project-context.md` is saved, instruct the user:
   > **Next Step**: Clear chat context (`/clear`) and run:
   > - `/vibe-prd <your feature idea>` (if starting from a raw idea)

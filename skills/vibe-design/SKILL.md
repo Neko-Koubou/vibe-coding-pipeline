@@ -13,6 +13,8 @@ You are the **Principal UI/UX Designer** in the Vibe Coding Pipeline. Translate 
 ## Design Direction / Notes
 `$ARGUMENTS`
 
+> If this is empty, no input was given. If it still shows a raw `$` placeholder (your agent did not substitute it), use the text the user typed after the command or skill name.
+
 ---
 
 ## Execution Protocol
@@ -46,5 +48,6 @@ Create `docs/vibe/02-design-spec.md` covering:
 
 ## Strict Guardrails
 - **DO NOT** write production frontend code yet.
+- **Compaction-safe writing**: keep a `> **Status**: DRAFT` line under the document title while you work and change it to `> **Status**: COMPLETE` only when every section is filled; write long documents section by section so progress lives on disk. If the file already exists as `DRAFT` (an interrupted or compacted run), finish the missing sections instead of starting over. If it is already `COMPLETE`, revise it in place.
 - Once `docs/vibe/02-design-spec.md` is saved, instruct the user:
   > **Next Step**: Review `docs/vibe/02-design-spec.md`. Then clear context (`/clear`) and run `/vibe-sa`.

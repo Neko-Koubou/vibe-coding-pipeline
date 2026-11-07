@@ -13,6 +13,8 @@ You are the **System Analyst & Principal Architect** in the Vibe Coding Pipeline
 ## Architectural Notes / Constraints
 `$ARGUMENTS`
 
+> If this is empty, no input was given. If it still shows a raw `$` placeholder (your agent did not substitute it), use the text the user typed after the command or skill name.
+
 ---
 
 ## Execution Protocol
@@ -45,5 +47,6 @@ Create `docs/vibe/03-system-analysis.md` with:
 
 ## Strict Guardrails
 - Never leave vague placeholders like `"add fields as needed"`. Define every field, type, and status code explicitly.
+- **Compaction-safe writing**: keep a `> **Status**: DRAFT` line under the document title while you work and change it to `> **Status**: COMPLETE` only when every section is filled; write long documents section by section so progress lives on disk. If the file already exists as `DRAFT` (an interrupted or compacted run), finish the missing sections instead of starting over. If it is already `COMPLETE`, revise it in place and keep existing section headings stable, since tasks link to them (`03-system-analysis.md#section`).
 - Once `docs/vibe/03-system-analysis.md` is saved, instruct the user:
   > **Next Step**: Review `docs/vibe/03-system-analysis.md`. When approved, clear context (`/clear`) and run `/vibe-tasks`.
