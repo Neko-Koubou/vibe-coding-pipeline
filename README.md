@@ -67,6 +67,22 @@ flowchart LR
 
 ## 🚀 Quick Installation (Global & Project)
 
+### Fastest: npx (Node.js 18+, Windows / macOS / Linux)
+No clone needed:
+```bash
+# Interactive (choose Global/Project and agents)
+npx vibe-coding-pipeline@latest
+
+# Non-interactive
+npx vibe-coding-pipeline@latest --global --agents claude,antigravity,codex
+npx vibe-coding-pipeline@latest --project ./my-app --agents all
+npx vibe-coding-pipeline@latest --yes    # Global + Claude Code, Antigravity, Codex, no prompts
+```
+
+Prefer a permanent command? `npm install -g vibe-coding-pipeline`, then run `vibe-pipeline` with the same flags (`vibe-pipeline --help`).
+
+> Not on npm yet? `npx github:Neko-Koubou/vibe-coding-pipeline` runs the same installer straight from GitHub.
+
 ### Interactive Installer (macOS / Linux / WSL / Windows Git Bash)
 ```bash
 git clone https://github.com/Neko-Koubou/vibe-coding-pipeline.git
@@ -98,6 +114,9 @@ python3 install.py
 To remove all global `/vibe-*` commands, workflows, and skills across all agents:
 
 ```bash
+# Any OS with Node.js
+npx vibe-coding-pipeline@latest uninstall
+
 # macOS / Linux / Git Bash
 ./uninstall.sh
 
@@ -110,7 +129,7 @@ python3 uninstall.py
 
 ### Upgrading
 
-Pull the latest version and re-run the installer with the same options. Commands and skills are overwritten, and the Vibe block inside shared rules files (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, ...) is replaced in place; the rest of those files is kept.
+Run `npx vibe-coding-pipeline@latest` again, or pull the latest version of this repo and re-run the installer with the same options. Commands and skills are overwritten, and the Vibe block inside shared rules files (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, ...) is replaced in place; the rest of those files is kept.
 
 ---
 
