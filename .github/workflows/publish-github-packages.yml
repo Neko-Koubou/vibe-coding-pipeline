@@ -32,10 +32,6 @@ jobs:
         if: github.event_name == 'release'
         run: test "v$(node -p 'require("./package.json").version')" = "$GITHUB_REF_NAME"
 
-      # GitHub Packages only accepts npm packages scoped to the repository owner.
-      - name: Scope the package name
-        run: npm pkg set name=@neko-koubou/vibe-coding-pipeline
-
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 # ⚡ Vibe Coding Pipeline — Panduan Lengkap Bahasa Indonesia (Edisi 2026)
 
-[![npm version](https://img.shields.io/npm/v/vibe-coding-pipeline?logo=npm&color=cb3837)](https://www.npmjs.com/package/vibe-coding-pipeline)
+[![npm version](https://img.shields.io/npm/v/@neko-koubou/vibe-coding-pipeline?logo=npm&color=cb3837)](https://www.npmjs.com/package/@neko-koubou/vibe-coding-pipeline)
 [![GitHub release](https://img.shields.io/github/v/release/Neko-Koubou/vibe-coding-pipeline?logo=github)](https://github.com/Neko-Koubou/vibe-coding-pipeline/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
@@ -33,7 +33,7 @@ npx Neko-Koubou/vibe-coding-pipeline --project ./my-app --agents all
 npx Neko-Koubou/vibe-coding-pipeline --yes    # Global + Claude Code, Antigravity, Codex
 ```
 
-Perintah ini menjalankan installer langsung dari GitHub (butuh `git` terpasang) dan selalu mengambil versi terbaru dari `main`. CLI yang sama juga ada di npm: `npx vibe-coding-pipeline@latest` (tidak butuh `git`).
+Perintah ini menjalankan installer langsung dari GitHub (butuh `git` terpasang) dan selalu mengambil versi terbaru dari `main`. CLI yang sama juga ada di npm: `npx @neko-koubou/vibe-coding-pipeline@latest` (tidak butuh `git`).
 
 Mau jadi command permanen? Jalankan `npm i -g Neko-Koubou/vibe-coding-pipeline`, lalu pakai `vibe-pipeline` dengan flag yang sama (`vibe-pipeline --help`).
 
