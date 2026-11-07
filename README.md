@@ -1,8 +1,10 @@
 # ⚡ Vibe Coding Pipeline — Multi-Agent SDLC Framework (2026 Edition)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
-[![OS: Windows | macOS | Linux](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-success)](#2026-agent-directory-matrix-global--project)
-[![Agents: 7 Supported](https://img.shields.io/badge/AI%20Agents-Claude%20%7C%20Antigravity%20%7C%20OpenCode%20%7C%20Codex%2BChatGPT%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Roo-blueviolet)](#2026-agent-directory-matrix-global--project)
+[![npm version](https://img.shields.io/npm/v/vibe-coding-pipeline?logo=npm&color=cb3837)](https://www.npmjs.com/package/vibe-coding-pipeline)
+[![GitHub release](https://img.shields.io/github/v/release/Neko-Koubou/vibe-coding-pipeline?logo=github)](https://github.com/Neko-Koubou/vibe-coding-pipeline/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#-license)
+[![OS: Windows | macOS | Linux](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-success)](#-2026-agent-directory-matrix-global--project)
+[![Agents: 7 Supported](https://img.shields.io/badge/AI%20Agents-Claude%20%7C%20Antigravity%20%7C%20OpenCode%20%7C%20Codex%2BChatGPT%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Roo-blueviolet)](#-2026-agent-directory-matrix-global--project)
 
 > **Install once globally. Orchestrate a complete AI Engineering Team across every project on Windows, macOS, and Linux.**
 >
@@ -71,17 +73,19 @@ flowchart LR
 No clone needed:
 ```bash
 # Interactive (choose Global/Project and agents)
-npx vibe-coding-pipeline@latest
+npx Neko-Koubou/vibe-coding-pipeline
 
 # Non-interactive
-npx vibe-coding-pipeline@latest --global --agents claude,antigravity,codex
-npx vibe-coding-pipeline@latest --project ./my-app --agents all
-npx vibe-coding-pipeline@latest --yes    # Global + Claude Code, Antigravity, Codex, no prompts
+npx Neko-Koubou/vibe-coding-pipeline --global --agents claude,antigravity,codex
+npx Neko-Koubou/vibe-coding-pipeline --project ./my-app --agents all
+npx Neko-Koubou/vibe-coding-pipeline --yes    # Global + Claude Code, Antigravity, Codex, no prompts
 ```
 
-Prefer a permanent command? `npm install -g vibe-coding-pipeline`, then run `vibe-pipeline` with the same flags (`vibe-pipeline --help`).
+This runs the installer straight from GitHub (needs `git` installed) and fetches the latest `main` every time. The same CLI is also published on npm: `npx vibe-coding-pipeline@latest` (no `git` needed).
 
-> Not on npm yet? `npx github:Neko-Koubou/vibe-coding-pipeline` runs the same installer straight from GitHub.
+Prefer a permanent command? `npm i -g Neko-Koubou/vibe-coding-pipeline`, then run `vibe-pipeline` with the same flags (`vibe-pipeline --help`).
+
+> Keep the `-g`: a plain `npm i Neko-Koubou/vibe-coding-pipeline` inside a project only adds it to that project's `package.json`; it does not install any `/vibe-*` command.
 
 ### Interactive Installer (macOS / Linux / WSL / Windows Git Bash)
 ```bash
@@ -115,7 +119,7 @@ To remove all global `/vibe-*` commands, workflows, and skills across all agents
 
 ```bash
 # Any OS with Node.js
-npx vibe-coding-pipeline@latest uninstall
+npx Neko-Koubou/vibe-coding-pipeline uninstall
 
 # macOS / Linux / Git Bash
 ./uninstall.sh
@@ -129,7 +133,7 @@ python3 uninstall.py
 
 ### Upgrading
 
-Run `npx vibe-coding-pipeline@latest` again, or pull the latest version of this repo and re-run the installer with the same options. Commands and skills are overwritten, and the Vibe block inside shared rules files (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, ...) is replaced in place; the rest of those files is kept.
+Run `npx Neko-Koubou/vibe-coding-pipeline` again (it always fetches the latest `main`), or pull the latest version of this repo and re-run the installer with the same options. Commands and skills are overwritten, and the Vibe block inside shared rules files (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, ...) is replaced in place; the rest of those files is kept.
 
 ---
 

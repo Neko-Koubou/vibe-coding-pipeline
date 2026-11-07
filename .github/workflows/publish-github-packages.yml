@@ -1,0 +1,41 @@
+name: Publish to GitHub Packages
+
+# Runs for every published GitHub Release; can also be started by hand for an existing tag.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Tag to publish (e.g. v1.0.0)
+        required: true
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: "@neko-koubou"
+
+      - name: Check the tag matches package.json
+        if: github.event_name == 'release'
+        run: test "v$(node -p 'require("./package.json").version')" = "$GITHUB_REF_NAME"
+
+      # GitHub Packages only accepts npm packages scoped to the repository owner.
+      - name: Scope the package name
+        run: npm pkg set name=@neko-koubou/vibe-coding-pipeline
+
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
