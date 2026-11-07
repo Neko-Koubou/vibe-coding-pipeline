@@ -1,8 +1,10 @@
 # ⚡ Vibe Coding Pipeline — Multi-Agent SDLC Framework (2026 Edition)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
-[![OS: Windows | macOS | Linux](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-success)](#2026-agent-directory-matrix-global--project)
-[![Agents: 7 Supported](https://img.shields.io/badge/AI%20Agents-Claude%20%7C%20Antigravity%20%7C%20OpenCode%20%7C%20Codex%2BChatGPT%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Roo-blueviolet)](#2026-agent-directory-matrix-global--project)
+[![npm version](https://img.shields.io/npm/v/vibe-coding-pipeline?logo=npm&color=cb3837)](https://www.npmjs.com/package/vibe-coding-pipeline)
+[![GitHub release](https://img.shields.io/github/v/release/Neko-Koubou/vibe-coding-pipeline?logo=github)](https://github.com/Neko-Koubou/vibe-coding-pipeline/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#-license)
+[![OS: Windows | macOS | Linux](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-success)](#-2026-agent-directory-matrix-global--project)
+[![Agents: 7 Supported](https://img.shields.io/badge/AI%20Agents-Claude%20%7C%20Antigravity%20%7C%20OpenCode%20%7C%20Codex%2BChatGPT%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Roo-blueviolet)](#-2026-agent-directory-matrix-global--project)
 
 > **Install once globally. Orchestrate a complete AI Engineering Team across every project on Windows, macOS, and Linux.**
 >

@@ -1,5 +1,9 @@
 # ⚡ Vibe Coding Pipeline — Panduan Lengkap Bahasa Indonesia (Edisi 2026)
 
+[![npm version](https://img.shields.io/npm/v/vibe-coding-pipeline?logo=npm&color=cb3837)](https://www.npmjs.com/package/vibe-coding-pipeline)
+[![GitHub release](https://img.shields.io/github/v/release/Neko-Koubou/vibe-coding-pipeline?logo=github)](https://github.com/Neko-Koubou/vibe-coding-pipeline/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
 Framework **Artifact-Driven Vibe Coding** dengan *slash command* (`/vibe-*`) dan **Agent Skills (`SKILL.md` / `$vibe-*`)** yang mendukung instalasi **Global (semua project)** maupun **Single Project**, deteksi OS otomatis (**Windows, macOS, Linux/WSL**), serta **Multi-Select Agent Picker**.
 
 ---
