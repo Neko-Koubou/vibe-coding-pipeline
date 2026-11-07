@@ -243,18 +243,51 @@ else
   done
 fi
 
+# The rules block is wrapped in these markers so a re-install can replace it in place.
+VIBE_BLOCK_START='<!-- vibe-pipeline:start -->'
+VIBE_BLOCK_END='<!-- vibe-pipeline:end -->'
+# Installs from before the markers existed: the block runs from this header through rule 4.
+LEGACY_BLOCK_START='# Vibe Coding Pipeline — Multi-Agent Engineering Protocol'
+LEGACY_BLOCK_LAST_LINE='4. **Atomic Coding**'
+
+# Print file $1 with its first block (line starting with $2 .. next line starting with $3)
+# replaced by the contents of file $4. Fails without a complete block.
+replace_rule_block() {
+  awk -v first="$2" -v last="$3" -v src="$4" '
+    NR == FNR {
+      if (!s && index($0, first) == 1) s = FNR
+      else if (s && !e && index($0, last) == 1) e = FNR
+      next
+    }
+    s && e && FNR == s { while ((getline line < src) > 0) print line; close(src); next }
+    s && e && FNR > s && FNR <= e { next }
+    { print }
+    END { if (!(s && e)) exit 1 }
+  ' "$1" "$1"
+}
+
+# Install the rules block into a shared rules file, updating an older installed copy
+# instead of skipping it. Other content in the file is kept.
 append_or_copy_rule() {
   local src="$1"
   local dest="$2"
+  local tmp
   mkdir -p "$(dirname "$dest")"
-  if [[ -f "$dest" ]]; then
-    if ! grep -q "Vibe Coding Pipeline" "$dest" 2>/dev/null; then
-      echo "" >> "$dest"
-      cat "$src" >> "$dest"
-    fi
-  else
+  if [[ ! -f "$dest" ]]; then
     cp "$src" "$dest"
+    return
   fi
+  tmp="$(mktemp)"
+  if replace_rule_block "$dest" "$VIBE_BLOCK_START" "$VIBE_BLOCK_END" "$src" > "$tmp" \
+    || replace_rule_block "$dest" "$LEGACY_BLOCK_START" "$LEGACY_BLOCK_LAST_LINE" "$src" > "$tmp"; then
+    cat "$tmp" > "$dest"
+  elif grep -q "Vibe Coding Pipeline" "$dest" 2>/dev/null; then
+    echo -e "${YELLOW}⚠️  $dest has a modified Vibe Coding Pipeline block; update it manually from $src${RESET}"
+  else
+    echo "" >> "$dest"
+    cat "$src" >> "$dest"
+  fi
+  rm -f "$tmp"
 }
 
 copy_skills_tree() {

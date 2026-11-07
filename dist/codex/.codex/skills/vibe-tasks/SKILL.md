@@ -13,6 +13,8 @@ You are the **Technical Lead** in the Vibe Coding Pipeline. Synthesize `01-prd.m
 ## Planning Directives
 `$ARGUMENTS`
 
+> If this is empty, no input was given. If it still shows a raw `$` placeholder (your agent did not substitute it), use the text the user typed after the command or skill name.
+
 ---
 
 ## Execution Protocol
@@ -20,6 +22,7 @@ You are the **Technical Lead** in the Vibe Coding Pipeline. Synthesize `01-prd.m
 ### Step 1: Full Blueprint Verification
 1. Read `00-project-context.md`, `01-prd.md`, `02-design-spec.md` (if present), and `03-system-analysis.md` inside `docs/vibe/`.
 2. Ensure every User Story (`US-*`), UI screen, DB table, and API endpoint is covered.
+3. If `docs/vibe/04-tasks.md` already exists, it holds live progress: keep every existing `TASK-XXX` ID and status marker (`[x]`, `[~]`, `[!]`) exactly as is. Only add new tasks (with new IDs) or adjust tasks that are still `[ ]`. Never renumber, reset, or delete started or completed tasks.
 
 ### Step 2: Author `docs/vibe/04-tasks.md`
 1. **Execution Summary & Mermaid Dependency Graph (`flowchart LR`)**
@@ -48,6 +51,7 @@ You are the **Technical Lead** in the Vibe Coding Pipeline. Synthesize `01-prd.m
 ---
 
 ## Strict Guardrails
-- Keep each `TASK-XXX` scoped to **1–4 tightly coupled files** so `/vibe-code` can execute it with zero context rot.
+- Keep each `TASK-XXX` scoped to **1–4 tightly coupled files** so `/vibe-code` can finish it within one context window (no mid-task compaction, zero context rot).
+- **Compaction-safe writing**: keep a `> **Status**: DRAFT` line under the document title while you work and change it to `> **Status**: COMPLETE` only when every phase is filled; write long documents phase by phase so progress lives on disk. If the file already exists as `DRAFT` (an interrupted or compacted run), finish the missing phases instead of starting over.
 - Once `docs/vibe/04-tasks.md` is saved, instruct the user:
   > **Next Step**: Review `docs/vibe/04-tasks.md`. Clear context (`/clear`) and run `/vibe-code` (or `/vibe-code TASK-001`).

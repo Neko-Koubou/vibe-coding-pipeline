@@ -15,6 +15,15 @@ PROMPTS_DIR = SCRIPT_DIR / "prompts"
 SKILLS_DIR = SCRIPT_DIR / "skills"
 RULES_DIR = SCRIPT_DIR / "rules"
 
+# The rules block is wrapped in these markers so a re-install can replace it in place.
+VIBE_BLOCK_START = "<!-- vibe-pipeline:start -->"
+VIBE_BLOCK_END = "<!-- vibe-pipeline:end -->"
+# Installs from before the markers existed: the block runs from this header through rule 4.
+LEGACY_BLOCK_START = "# Vibe Coding Pipeline — Multi-Agent Engineering Protocol"
+LEGACY_BLOCK_LAST_LINE = "4. **Atomic Coding**"
+# Rule files that belong to the pipeline alone and can simply be overwritten.
+DEDICATED_RULE_FILES = {"vibe-pipeline.md", "vibe-pipeline.mdc"}
+
 
 def detect_os_env():
     sys_name = platform.system().lower()
@@ -199,6 +208,38 @@ def copy_skills(dest_root: Path):
                     shutil.copy2(item, target_skill_dir / item.name)
 
 
+def replace_rule_block(existing: str, block: str):
+    """Swap a previously installed Vibe block for `block`; None if no complete block is found."""
+    lines = existing.splitlines(keepends=True)
+    for first, last in ((VIBE_BLOCK_START, VIBE_BLOCK_END), (LEGACY_BLOCK_START, LEGACY_BLOCK_LAST_LINE)):
+        start = next((i for i, line in enumerate(lines) if line.startswith(first)), None)
+        if start is None:
+            continue
+        end = next((i for i in range(start + 1, len(lines)) if lines[i].startswith(last)), None)
+        if end is None:
+            continue
+        trailing = "\n" if lines[end].endswith("\n") else ""
+        return "".join(lines[:start]) + block.rstrip("\n") + trailing + "".join(lines[end + 1:])
+    return None
+
+
+def install_rule(src_rule: Path, dest_rule: Path):
+    """Install the rules block, updating an older installed copy instead of skipping it."""
+    dest_rule.parent.mkdir(parents=True, exist_ok=True)
+    if dest_rule.name in DEDICATED_RULE_FILES or not dest_rule.exists():
+        shutil.copy2(src_rule, dest_rule)
+        return
+    block = src_rule.read_text(encoding="utf-8")
+    existing = dest_rule.read_text(encoding="utf-8", errors="surrogateescape")
+    updated = replace_rule_block(existing, block)
+    if updated is None:
+        if "Vibe Coding Pipeline" in existing:
+            print(f"⚠️  {dest_rule} has a modified Vibe Coding Pipeline block; update it manually from {src_rule}")
+            return
+        updated = (existing.rstrip("\n") + "\n\n" if existing.strip() else "") + block
+    dest_rule.write_text(updated, encoding="utf-8", errors="surrogateescape")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Vibe Coding Pipeline Universal 2026 Installer")
     parser.add_argument("-g", "--global", dest="is_global", action="store_true", help="Install globally for current OS user")
@@ -289,16 +330,7 @@ def main():
             copy_skills(sdir)
 
         for src_rule, dest_rule in rule_pairs:
-            dest_rule.parent.mkdir(parents=True, exist_ok=True)
-            if dest_rule.exists():
-                existing = dest_rule.read_text(encoding="utf-8", errors="ignore")
-                if "Vibe Coding Pipeline" not in existing:
-                    dest_rule.write_text(
-                        existing + "\n\n" + src_rule.read_text(encoding="utf-8"),
-                        encoding="utf-8",
-                    )
-            else:
-                shutil.copy2(src_rule, dest_rule)
+            install_rule(src_rule, dest_rule)
 
         print(f"✅ {sp['name']} ({scope.upper()}) -> {cmd_dirs[0]}")
 

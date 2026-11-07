@@ -10,7 +10,8 @@ Framework **Artifact-Driven Vibe Coding** dengan *slash command* (`/vibe-*`) dan
 3. [Cara Pakai dari Nol (Dari Ide Mentah Sampai Testing)](#-3-cara-pakai-dari-nol-dari-ide-mentah-sampai-testing)
 4. [Cara Pakai di Project yang Sudah Jalan (Existing Codebase)](#-4-cara-pakai-di-project-yang-sudah-jalan-existing-codebase)
 5. [Daftar Lengkap Slash Command & Contoh Pemakaian](#-5-daftar-lengkap-slash-command--contoh-pemakaian)
-6. [Tabel Direktori Terbaru Masing-Masing Agent (2026)](#-6-tabel-direktori-terbaru-masing-masing-agent-2026)
+6. [Kalau Context Di-compact di Tengah Jalan](#-6-kalau-context-di-compact-di-tengah-jalan)
+7. [Tabel Direktori Terbaru Masing-Masing Agent (2026)](#-7-tabel-direktori-terbaru-masing-masing-agent-2026)
 
 ---
 
@@ -49,6 +50,9 @@ Untuk menghapus seluruh command, workflow, dan skill global `/vibe-*` dari siste
 # Lintas Platform (Python)
 python3 uninstall.py
 ```
+
+### Update ke Versi Terbaru
+Tarik versi terbaru repo ini, lalu jalankan ulang installer dengan opsi yang sama. Command dan skill akan ditimpa, dan blok Vibe di dalam file rules bersama (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, ...) diganti di tempat; isi lain di file tersebut tetap aman.
 
 --- 
 
@@ -181,7 +185,24 @@ Jika kamu ingin menambahkan fitur baru pada project yang sudah ada:
 
 ---
 
-## 🗂️ 6. Tabel Direktori Terbaru Masing-Masing Agent (2026)
+## 🧠 6. Kalau Context Di-compact di Tengah Jalan
+
+Agent otomatis memadatkan (compact/summarize) percakapan yang sudah panjang. Kalau itu terjadi di tengah sebuah tahap, ingatan chat (kadang termasuk instruksi `/vibe-*` itu sendiri) bisa ikut terpangkas. Karena itu setiap tahap menyimpan progresnya **di disk**:
+
+| Tahap | Checkpoint di disk | Setelah compaction / terputus |
+| :--- | :--- | :--- |
+| `/vibe-code` | Penanda `[~]` di `04-tasks.md` + entri `IN PROGRESS` di `05-implementation-log.md` | Jalankan `/vibe-code` lagi: task `[~]` dilanjutkan, bukan dilompati ke task berikutnya |
+| `/vibe-review --fix` | Tiap temuan berubah `[OPEN]` → `[RESOLVED]` di `06-code-review.md` | Jalankan ulang `/vibe-review --fix`: lanjut ke temuan yang masih `[OPEN]` |
+| `/vibe-test` | Baris RTM berubah `PENDING` → `PASS`/`FAIL` di `07-qa-report.md` | Jalankan ulang `/vibe-test`: lanjut ke baris yang masih `PENDING` |
+| `/vibe-init` … `/vibe-tasks` | `> **Status**: DRAFT` sampai artifact `COMPLETE` | Jalankan ulang tahapnya: bagian yang belum ada akan dilengkapi |
+
+Penanda task di `04-tasks.md`: `- [ ]` Pending · `- [~]` Sedang dikerjakan · `- [x]` Selesai · `- [!]` Terblokir (alasannya ada di `05-implementation-log.md`).
+
+File rules yang ter-install (`CLAUDE.md` / `AGENTS.md` / `.mdc`) juga menyuruh agent membaca ulang `docs/vibe/` setelah compaction, dan berisi bagian **Compact Instructions** yang memberi tahu ringkasan apa saja yang wajib disimpan.
+
+---
+
+## 🗂️ 7. Tabel Direktori Terbaru Masing-Masing Agent (2026)
 
 | AI Coding Agent | Global Slash Command / Workflow | Global Agent Skills (`SKILL.md`) | Global Rules / Memory | Project-Level Path |
 | :--- | :--- | :--- | :--- | :--- |
