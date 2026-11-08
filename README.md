@@ -181,16 +181,16 @@ The exact folders per agent are listed in the [Agent Directory Matrix](#-10-agen
 
 ### 4.5 Interactive installer walkthrough
 
-The installer prompts are written in Indonesian (*LANGKAH* means *STEP*).
+The installer asks two questions.
 
 **Step 1/2: choose the scope**
 
 ```text
-LANGKAH 1/2 — Pilih Mode Instalasi (Installation Scope):
-  [1] 🌍 GLOBAL (Recommended) — Install 1x di macOS (arm64), aktif di SEMUA project!
-  [2] 📁 SINGLE PROJECT       — Install hanya di 1 folder project spesifik
+STEP 1/2 — Choose the installation scope:
+  [1] 🌍 GLOBAL (Recommended) — install once on macOS (arm64), available in EVERY project
+  [2] 📁 SINGLE PROJECT       — install into one project folder only
 
-👉 Pilih mode [1 = Global, 2 = Project] (default: 1):
+👉 Choose scope [1 = Global, 2 = Project] (default: 1):
 ```
 
 Press **ENTER** for Global. Choose **2** for Project; the installer then asks for the project folder (ENTER = the current folder).
@@ -198,7 +198,7 @@ Press **ENTER** for Global. Choose **2** for Project; the installer then asks fo
 **Step 2/2: choose the agents**
 
 ```text
-LANGKAH 2/2 — Pilih AI Agent (Multi-Select | Scope: GLOBAL):
+STEP 2/2 — Choose your AI agents (multi-select | scope: GLOBAL):
   [x] 1) Claude Code (CLI & IDE)        -> ~/.claude/commands
   [x] 2) Google Antigravity (IDE & CLI) -> ~/.gemini/config/global_workflows
   [ ] 3) OpenCode (CLI / Desktop)       -> ~/.config/opencode/command
@@ -206,6 +206,10 @@ LANGKAH 2/2 — Pilih AI Agent (Multi-Select | Scope: GLOBAL):
   [ ] 5) Cursor (AI IDE)                -> ~/.cursor/commands
   [ ] 6) Windsurf (Agentic IDE)         -> ~/.codeium/windsurf/global_workflows
   [ ] 7) Roo Code / Cline               -> ~/.roo/commands
+
+  • Type numbers to toggle (e.g. 1,2,4) | 'a' = all | 'n' = none
+  • Press ENTER when you are done to start installing
+👉 Your choice:
 ```
 
 | Type | Effect |

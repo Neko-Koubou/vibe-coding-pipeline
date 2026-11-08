@@ -131,24 +131,24 @@ done
 if [[ -z "$SCOPE" ]]; then
   print_banner
   echo ""
-  echo -e "${BOLD}LANGKAH 1/2 — Pilih Mode Instalasi (Installation Scope):${RESET}"
+  echo -e "${BOLD}STEP 1/2 — Choose the installation scope:${RESET}"
   echo -e "  ${GREEN}${BOLD}[1] 🌍 GLOBAL (Recommended)${RESET}"
-  echo -e "      Install satu kali di level OS (${OS_LABEL})."
-  echo -e "      Slash command ${CYAN}/vibe-*${RESET} & skill ${CYAN}\$vibe-*${RESET} langsung aktif di ${BOLD}SEMUA project${RESET}!"
+  echo -e "      Install once for this OS user (${OS_LABEL})."
+  echo -e "      The ${CYAN}/vibe-*${RESET} commands & ${CYAN}\$vibe-*${RESET} skills work in ${BOLD}EVERY project${RESET}."
   echo ""
   echo -e "  ${YELLOW}${BOLD}[2] 📁 SINGLE PROJECT${RESET}"
-  echo -e "      Install hanya di dalam 1 folder project spesifik."
+  echo -e "      Install into one project folder only."
   echo ""
-  read -rp "👉 Pilih mode [1 = Global, 2 = Project] (default: 1): " scope_choice
+  read -rp "👉 Choose scope [1 = Global, 2 = Project] (default: 1): " scope_choice
   scope_choice="${scope_choice:-1}"
   case "$scope_choice" in
     1|g|G|global) SCOPE="global" ;;
     2|p|P|project)
       SCOPE="project"
-      read -rp "📂 Masukkan path folder project (ENTER untuk $TARGET_DIR): " input_dir
+      read -rp "📂 Project folder (ENTER for $TARGET_DIR): " input_dir
       [[ -n "${input_dir:-}" ]] && TARGET_DIR="$input_dir"
       ;;
-    *) echo -e "${RED}Pilihan tidak valid.${RESET}"; exit 1 ;;
+    *) echo -e "${RED}Invalid choice.${RESET}"; exit 1 ;;
   esac
 fi
 
@@ -210,7 +210,7 @@ else
   while true; do
     echo ""
     echo "----------------------------------------------------------------------"
-    echo -e "${BOLD}LANGKAH 2/2 — Pilih AI Agent (Multi-Select | Mode: ${GREEN}${SCOPE^^}${RESET}):"
+    echo -e "${BOLD}STEP 2/2 — Choose your AI agents (multi-select | scope: ${GREEN}${SCOPE^^}${RESET}):"
     echo ""
     for i in "${!AGENT_KEYS[@]}"; do
       num=$((i + 1))
@@ -219,13 +219,13 @@ else
       echo -e "  $mark ${BOLD}${num})${RESET} ${AGENT_NAMES[$i]} ${DIM}-> ${path_prev}${RESET}"
     done
     echo ""
-    echo -e "  • Ketik angka untuk toggle/centang (contoh: ${BOLD}1,2,4${RESET} atau ${BOLD}3 5${RESET}) | ${BOLD}a${RESET} = Semua | ${BOLD}n${RESET} = Reset"
-    echo -e "  • Tekan ${GREEN}${BOLD}ENTER${RESET} jika selesai memilih untuk mulai install"
-    read -rp "👉 Pilihan Anda: " user_input
+    echo -e "  • Type numbers to toggle (e.g. ${BOLD}1,2,4${RESET} or ${BOLD}3 5${RESET}) | ${BOLD}a${RESET} = all | ${BOLD}n${RESET} = none"
+    echo -e "  • Press ${GREEN}${BOLD}ENTER${RESET} when you are done to start installing"
+    read -rp "👉 Your choice: " user_input
     if [[ -z "${user_input// /}" || "$user_input" =~ ^[yYdD]$ ]]; then
       total_sel=0
       for s in "${SELECTED[@]}"; do total_sel=$((total_sel + s)); done
-      if [[ "$total_sel" -eq 0 ]]; then echo -e "${RED}⚠️  Pilih minimal 1 agent!${RESET}"; continue; fi
+      if [[ "$total_sel" -eq 0 ]]; then echo -e "${RED}⚠️  Select at least 1 agent!${RESET}"; continue; fi
       break
     elif [[ "$user_input" =~ ^[aA]$ || "$user_input" == "all" ]]; then
       SELECTED=(1 1 1 1 1 1 1)
@@ -434,7 +434,7 @@ for i in "${!AGENT_KEYS[@]}"; do
 done
 
 echo "======================================================================"
-echo -e "🎉 ${GREEN}${BOLD}INSTALASI SELESAI!${RESET}"
-echo -e "Gunakan ${CYAN}/vibe-init${RESET}, ${CYAN}/vibe-prd${RESET}, ${CYAN}/vibe-design${RESET}, ${CYAN}/vibe-sa${RESET}, ${CYAN}/vibe-tasks${RESET}, ${CYAN}/vibe-code${RESET}, ${CYAN}/vibe-review${RESET}, ${CYAN}/vibe-test${RESET}, ${CYAN}/vibe-status${RESET}"
-echo -e "(Di ChatGPT App / Codex terbaru, Anda juga bisa memanggil skill dengan ${CYAN}\$vibe-prd${RESET}, ${CYAN}\$vibe-sa${RESET}, atau ${CYAN}/vibe-prd${RESET})."
+echo -e "🎉 ${GREEN}${BOLD}INSTALLATION COMPLETE!${RESET}"
+echo -e "Use ${CYAN}/vibe-init${RESET}, ${CYAN}/vibe-prd${RESET}, ${CYAN}/vibe-design${RESET}, ${CYAN}/vibe-sa${RESET}, ${CYAN}/vibe-tasks${RESET}, ${CYAN}/vibe-code${RESET}, ${CYAN}/vibe-review${RESET}, ${CYAN}/vibe-test${RESET}, ${CYAN}/vibe-status${RESET}"
+echo -e "(In Codex and the ChatGPT app, call the skills as ${CYAN}\$vibe-prd${RESET}, ${CYAN}\$vibe-sa${RESET}, ...)."
 echo "======================================================================"

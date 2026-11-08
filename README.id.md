@@ -181,16 +181,16 @@ Folder persis untuk tiap agent ada di [Tabel Direktori Agent](#-10-tabel-direkto
 
 ### 4.5 Panduan installer interaktif
 
-Teks installer memang berbahasa Indonesia.
+Installer mengajukan dua pertanyaan.
 
 **Langkah 1/2: pilih scope**
 
 ```text
-LANGKAH 1/2 — Pilih Mode Instalasi (Installation Scope):
-  [1] 🌍 GLOBAL (Recommended) — Install 1x di macOS (arm64), aktif di SEMUA project!
-  [2] 📁 SINGLE PROJECT       — Install hanya di 1 folder project spesifik
+STEP 1/2 — Choose the installation scope:
+  [1] 🌍 GLOBAL (Recommended) — install once on macOS (arm64), available in EVERY project
+  [2] 📁 SINGLE PROJECT       — install into one project folder only
 
-👉 Pilih mode [1 = Global, 2 = Project] (default: 1):
+👉 Choose scope [1 = Global, 2 = Project] (default: 1):
 ```
 
 Tekan **ENTER** untuk Global. Pilih **2** untuk Project; installer lalu menanyakan folder project-nya (ENTER = folder saat ini).
@@ -198,7 +198,7 @@ Tekan **ENTER** untuk Global. Pilih **2** untuk Project; installer lalu menanyak
 **Langkah 2/2: pilih agent**
 
 ```text
-LANGKAH 2/2 — Pilih AI Agent (Multi-Select | Scope: GLOBAL):
+STEP 2/2 — Choose your AI agents (multi-select | scope: GLOBAL):
   [x] 1) Claude Code (CLI & IDE)        -> ~/.claude/commands
   [x] 2) Google Antigravity (IDE & CLI) -> ~/.gemini/config/global_workflows
   [ ] 3) OpenCode (CLI / Desktop)       -> ~/.config/opencode/command
@@ -206,6 +206,10 @@ LANGKAH 2/2 — Pilih AI Agent (Multi-Select | Scope: GLOBAL):
   [ ] 5) Cursor (AI IDE)                -> ~/.cursor/commands
   [ ] 6) Windsurf (Agentic IDE)         -> ~/.codeium/windsurf/global_workflows
   [ ] 7) Roo Code / Cline               -> ~/.roo/commands
+
+  • Type numbers to toggle (e.g. 1,2,4) | 'a' = all | 'n' = none
+  • Press ENTER when you are done to start installing
+👉 Your choice:
 ```
 
 | Ketik | Efek |

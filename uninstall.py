@@ -48,7 +48,7 @@ def main():
     xdg = env["xdg_cfg"]
     appdata = env["appdata"]
 
-    print("🗑️  Menghapus global commands & skills /vibe-*...")
+    print("🗑️  Removing the global /vibe-* commands & skills...")
 
     # Claude Code
     remove_glob(str(h / ".claude" / "commands" / "vibe-*.md"))
@@ -90,7 +90,7 @@ def main():
     # Roo Code
     remove_glob(str(h / ".roo" / "commands" / "vibe-*.md"))
 
-    print("✅ Semua global command & skill /vibe-* berhasil dihapus.")
+    print("✅ Removed all global /vibe-* commands & skills.")
 
 
 if __name__ == "__main__":
