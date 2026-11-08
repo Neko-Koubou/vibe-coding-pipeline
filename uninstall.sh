@@ -19,7 +19,7 @@ case "$UNAME_S" in
     ;;
 esac
 
-echo "🗑️  Menghapus global commands & skills /vibe-* dari direktori user..."
+echo "🗑️  Removing the global /vibe-* commands & skills from your user folders..."
 
 # Claude Code
 rm -f "$USER_HOME/.claude/commands/vibe-"*.md 2>/dev/null || true
@@ -58,4 +58,4 @@ rm -f "$USER_HOME/.windsurf/workflows/vibe-"*.md 2>/dev/null || true
 # Roo Code
 rm -f "$USER_HOME/.roo/commands/vibe-"*.md 2>/dev/null || true
 
-echo "✅ Semua global command & skill /vibe-* berhasil dihapus."
+echo "✅ Removed all global /vibe-* commands & skills."

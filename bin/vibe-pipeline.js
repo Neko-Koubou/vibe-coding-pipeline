@@ -246,7 +246,7 @@ function parseAgentList(list, specs) {
     if (idx === -1) unknown.push(token);
     else selected[idx] = true;
   }
-  if (unknown.length) console.log(`⚠️  Agent tidak dikenal, dilewati: ${unknown.join(", ")}`);
+  if (unknown.length) console.log(`⚠️  Unknown agent(s) skipped: ${unknown.join(", ")}`);
   if (!selected.some(Boolean)) {
     throw new UsageError(`No known agent in "${list}". Use: ${specs.map((sp) => sp.key).join(", ")}, all`);
   }
@@ -260,7 +260,7 @@ function expandHome(p) {
 function createPrompter() {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   rl.on("SIGINT", () => {
-    console.log("\nDibatalkan.");
+    console.log("\nCancelled.");
     process.exit(130);
   });
   const ask = (question) =>
@@ -276,12 +276,12 @@ function createPrompter() {
 }
 
 async function promptScope(ask, env, target) {
-  console.log("\nLANGKAH 1/2 — Pilih Mode Instalasi (Installation Scope):");
-  console.log(`  [1] 🌍 GLOBAL (Recommended) — Install 1x di ${env.osLabel}, aktif di SEMUA project!`);
-  console.log("  [2] 📁 SINGLE PROJECT       — Install hanya di 1 folder project spesifik");
-  const choice = (await ask("\n👉 Pilih mode [1 = Global, 2 = Project] (default: 1): ")).toLowerCase();
+  console.log("\nSTEP 1/2 — Choose the installation scope:");
+  console.log(`  [1] 🌍 GLOBAL (Recommended) — install once on ${env.osLabel}, available in EVERY project`);
+  console.log("  [2] 📁 SINGLE PROJECT       — install into one project folder only");
+  const choice = (await ask("\n👉 Choose scope [1 = Global, 2 = Project] (default: 1): ")).toLowerCase();
   if (["", "1", "g", "global"].includes(choice)) return { scope: "global", target };
-  const custom = await ask(`📂 Path folder project (ENTER untuk ${target}): `);
+  const custom = await ask(`📂 Project folder (ENTER for ${target}): `);
   return { scope: "project", target: custom ? path.resolve(expandHome(custom)) : target };
 }
 
@@ -289,16 +289,16 @@ async function promptAgents(ask, specs, scope) {
   let selected = specs.map((sp) => DEFAULT_AGENTS.has(sp.key));
   for (;;) {
     console.log("\n" + "-".repeat(72));
-    console.log(`LANGKAH 2/2 — Pilih AI Agent (Multi-Select | Scope: ${scope.toUpperCase()}):`);
+    console.log(`STEP 2/2 — Choose your AI agents (multi-select | scope: ${scope.toUpperCase()}):`);
     specs.forEach((sp, i) => {
       console.log(`  ${selected[i] ? "[x]" : "[ ]"} ${i + 1}) ${sp.name.padEnd(28)} -> ${sp[scope].cmd[0]}`);
     });
-    console.log("\n  • Ketik angka untuk toggle (contoh: 1,2,4) | 'a' = Semua | 'n' = Reset");
-    console.log("  • Tekan ENTER jika selesai memilih untuk mulai install");
-    const answer = (await ask("👉 Pilihan Anda: ")).toLowerCase();
+    console.log("\n  • Type numbers to toggle (e.g. 1,2,4) | 'a' = all | 'n' = none");
+    console.log("  • Press ENTER when you are done to start installing");
+    const answer = (await ask("👉 Your choice: ")).toLowerCase();
     if (["", "y", "d", "install"].includes(answer)) {
       if (selected.some(Boolean)) return selected;
-      console.log("⚠️  Pilih minimal 1 agent!");
+      console.log("⚠️  Select at least 1 agent!");
     } else if (answer === "a" || answer === "all") {
       selected = specs.map(() => true);
     } else if (answer === "n" || answer === "none") {
@@ -351,7 +351,7 @@ async function install(opts, env) {
     console.log(`✅ ${sp.name} (${scope.toUpperCase()}) -> ${paths.cmd[0]}`);
   });
   console.log("=".repeat(72));
-  console.log("🎉 Instalasi selesai! Gunakan /vibe-init, /vibe-prd, /vibe-design, /vibe-sa, /vibe-tasks, /vibe-code, /vibe-review, /vibe-test, /vibe-status");
+  console.log("🎉 Installation complete! Use /vibe-init, /vibe-prd, /vibe-design, /vibe-sa, /vibe-tasks, /vibe-code, /vibe-review, /vibe-test, /vibe-status");
 }
 
 // Keep in sync with uninstall.py.
@@ -386,7 +386,7 @@ function uninstall(env) {
   ];
   const singleFiles = [j(h, ".agent", "rules", "vibe-pipeline.md"), j(h, ".cursor", "rules", "vibe-pipeline.mdc")];
 
-  console.log("🗑️  Menghapus global commands & skills /vibe-*...");
+  console.log("🗑️  Removing the global /vibe-* commands & skills...");
   let removed = 0;
   for (const [dir, suffix] of patterns) {
     let names;
@@ -408,7 +408,7 @@ function uninstall(env) {
       removed += 1;
     }
   }
-  console.log(`✅ Semua global command & skill /vibe-* berhasil dihapus (${removed} item).`);
+  console.log(`✅ Removed all global /vibe-* commands & skills (${removed} items).`);
 }
 
 function parseArgs(argv) {

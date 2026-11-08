@@ -7,7 +7,7 @@ param()
 
 $ErrorActionPreference = "SilentlyContinue"
 
-Write-Host "🗑️  Menghapus global commands & skills /vibe-* untuk Windows..." -ForegroundColor Cyan
+Write-Host "🗑️  Removing the global /vibe-* commands & skills on Windows..." -ForegroundColor Cyan
 
 $UserHome = [System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::UserProfile)
 $AppData = [System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::ApplicationData)
@@ -61,4 +61,4 @@ foreach ($pathPattern in $pathsToDelete) {
     }
 }
 
-Write-Host "✅ Semua global command & skill /vibe-* berhasil dihapus." -ForegroundColor Green
+Write-Host "✅ Removed all global /vibe-* commands & skills." -ForegroundColor Green

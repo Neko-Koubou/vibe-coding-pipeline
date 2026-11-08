@@ -260,15 +260,15 @@ def main():
     target_dir = Path(args.target).resolve()
 
     if not scope:
-        print("\nLANGKAH 1/2 — Pilih Mode Instalasi (Installation Scope):")
-        print(f"  [1] 🌍 GLOBAL (Recommended) — Install 1x di {env['os_label']}, aktif di SEMUA project!")
-        print("  [2] 📁 SINGLE PROJECT       — Install hanya di 1 folder project spesifik")
-        choice = input("\n👉 Pilih mode [1 = Global, 2 = Project] (default: 1): ").strip().lower()
+        print("\nSTEP 1/2 — Choose the installation scope:")
+        print(f"  [1] 🌍 GLOBAL (Recommended) — install once on {env['os_label']}, available in EVERY project")
+        print("  [2] 📁 SINGLE PROJECT       — install into one project folder only")
+        choice = input("\n👉 Choose scope [1 = Global, 2 = Project] (default: 1): ").strip().lower()
         if choice in ("", "1", "g", "global"):
             scope = "global"
         else:
             scope = "project"
-            custom_t = input(f"📂 Path folder project (ENTER untuk {target_dir}): ").strip()
+            custom_t = input(f"📂 Project folder (ENTER for {target_dir}): ").strip()
             if custom_t:
                 target_dir = Path(custom_t).expanduser().resolve()
 
@@ -287,18 +287,18 @@ def main():
     else:
         while True:
             print("\n" + "-" * 72)
-            print(f"LANGKAH 2/2 — Pilih AI Agent (Multi-Select | Scope: {scope.upper()}):")
+            print(f"STEP 2/2 — Choose your AI agents (multi-select | scope: {scope.upper()}):")
             for idx, sp in enumerate(specs):
                 mark = "[x]" if selected[idx] else "[ ]"
                 preview = sp["global_cmd"][0] if scope == "global" else sp["project_cmd"][0]
                 print(f"  {mark} {idx + 1}) {sp['name']:<28} -> {preview}")
-            print("\n  • Ketik angka untuk toggle (contoh: 1,2,4) | 'a' = Semua | 'n' = Reset")
-            print("  • Tekan ENTER jika selesai memilih untuk mulai install")
-            ans = input("👉 Pilihan Anda: ").strip().lower()
+            print("\n  • Type numbers to toggle (e.g. 1,2,4) | 'a' = all | 'n' = none")
+            print("  • Press ENTER when you are done to start installing")
+            ans = input("👉 Your choice: ").strip().lower()
             if ans in ("", "y", "d", "install"):
                 if any(selected):
                     break
-                print("⚠️  Pilih minimal 1 agent!")
+                print("⚠️  Select at least 1 agent!")
             elif ans in ("a", "all"):
                 selected = [True] * len(specs)
             elif ans in ("n", "none"):
@@ -335,7 +335,7 @@ def main():
         print(f"✅ {sp['name']} ({scope.upper()}) -> {cmd_dirs[0]}")
 
     print("=" * 72)
-    print("🎉 Instalasi selesai! Gunakan /vibe-init, /vibe-prd, /vibe-design, /vibe-sa, /vibe-tasks, /vibe-code, /vibe-review, /vibe-test, /vibe-status")
+    print("🎉 Installation complete! Use /vibe-init, /vibe-prd, /vibe-design, /vibe-sa, /vibe-tasks, /vibe-code, /vibe-review, /vibe-test, /vibe-status")
 
 
 if __name__ == "__main__":
